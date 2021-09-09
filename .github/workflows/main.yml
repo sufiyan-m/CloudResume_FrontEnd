@@ -14,5 +14,7 @@ jobs:
           aws-region: us-east-1
       - name: Deploying to S3 Bucket
         run: aws s3 sync ./ s3://msufiyan.com --delete
+      - name: CloudFront Cache invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CDN_DISTRIBUTION_ID }} --paths "/*"
 
       
